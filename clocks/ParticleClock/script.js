@@ -4,6 +4,15 @@ let last = {
     "h": ["0", "0"]
 }
 
+let URLParams = new URLSearchParams(window.location.search)
+
+if (URLParams.get("image") !== null){
+    document.querySelector("body").style.background = 'url("' + URLParams.get("image") + '")'
+    document.querySelector("body").style.backgroundSize = 'cover'
+} else if(URLParams.get("color") !== null){
+    document.querySelector("body").style.background = "#" + URLParams.get("color")
+}
+
 let particles = []
 
 for (let i=0; i < 100; i++){
@@ -157,4 +166,5 @@ function ParticleLoop(){
 
 setInterval(ClockLoop, 100)
 
+ParticleLoop()
 setInterval(ParticleLoop, 2000)

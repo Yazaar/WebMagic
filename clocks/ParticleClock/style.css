@@ -37,7 +37,7 @@ span {
 div {
     position: absolute;
     border-radius: 50%;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, .75);
     transform: translate3d(-50%,-50%,0);
     z-index: -1;
     transition: top 2s linear, left 2s linear, width 2s linear, height 2s linear;
