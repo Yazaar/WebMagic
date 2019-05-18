@@ -16,7 +16,7 @@ section {
     height: 15vw;
     padding: 1vw 3vw;
     border: #000000 solid 1vw;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, .75);
     border-radius: 2vw;
     display: flex;
     justify-content: center;
