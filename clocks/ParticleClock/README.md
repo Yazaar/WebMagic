@@ -7,6 +7,6 @@ You may as well include this in your URL:<br>
 or<br>
 ?image=IMAGE_URL >> make the background to your chosen image!
 <h3>EXAMPLES:</h3>
-I would recommend to <a href="https://www.urlencoder.org/">URL encode</a> the image URL<br>
-<a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?color=eeeeee">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?color=eeeeee</a><br>
-<a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?image=https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-1.2.1&auto=format&fit=crop&w=1414&q=80">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?image=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1532762471988-c0d67cc3f771%3Fixlib%3Drb-1.2.1%26auto%3Dformat%26fit%3Dcrop%26w%3D1414%26q%3D80</a><br>
+I would recommend to <a href="https://www.urlencoder.org/">URL encode</a> the image URL<br><br>
+<a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?color=eeeeee">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?color=eeeeee</a><br><br>
+<a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?image=https://images.unsplash.com/photo-1532762471988-c0d67cc3f771?ixlib=rb-1.2.1&auto=format&fit=crop&w=1414&q=80">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/?image=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1532762471988-c0d67cc3f771%3Fixlib%3Drb-1.2.1%26auto%3Dformat%26fit%3Dcrop%26w%3D1414%26q%3D80</a>
