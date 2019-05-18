@@ -3,4 +3,4 @@
 <h3>Main URL:<br>https://yazaar.github.io/Web-Functionalities</h3>
 
 <h1>Projects:</h1>
-<h4>Particle Clock<br>https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock</h4>
+<h4><a href="https://github.com/Yazaar/Web-Functionalities/tree/master/clocks/ParticleClock">ParticleClock</a> (works well with wallpaper engine)</h4>
