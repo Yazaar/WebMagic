@@ -13,9 +13,19 @@ if (URLParams.get("image") !== null){
     document.querySelector("body").style.background = "#" + URLParams.get("color")
 }
 
+if (URLParams.get("particlecount") !== null){
+    if (parseInt(URLParams.get("particlecount")) !== NaN){
+        particle_count = parseInt(URLParams.get("particlecount"))
+    } else {
+        particle_count = 100
+    }
+} else {
+    particle_count = 100
+}
+
 let particles = []
 
-for (let i=0; i < 100; i++){
+for (let i=0; i < particle_count; i++){
     particles.push(createParticle())
 }
 
