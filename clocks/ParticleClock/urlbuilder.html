@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Particle Clock | URL Builder</title>
+    <link rel="stylesheet" href="urlbuilder.css">
+</head>
+<body>
+    <section id="result">
+        <h1>RESULT:</h1>
+        <p></p>
+    </section>
+    <section id="build">
+        <h2>Hit the dark circle to enable</h2>
+        <section>
+            <p>Particle count:</p>
+            <input type="checkbox" id="particlecount-checkbox">
+            <input type="number" id="particlecount-input" placeholder="100">
+        </section>
+        <section>
+            <p>Background URL:</p>
+            <input type="checkbox" id="url-checkbox">
+            <input type="text" id="url-input" placeholder="https://www.somewhere.com/AwesomeImage.png">
+        </section>
+        <section>
+            <p>Background hex color:</p>
+            <input type="checkbox" id="hex-checkbox">
+            <input type="text" id="hex-input" placeholder="61ba37 >> RRGGBB or RRGGBBAA (R=red, G=Green, B=Blue, A=Alpha)">
+        </section>
+        <section>
+            <p>Opacity:</p>
+            <input type="checkbox" id="opacity-checkbox">
+            <input type="number" id="opacity-input" placeholder="75" min="0" max="100">
+        </section>
+        <section></section>
+        <section></section>
+    </section>
+    <script src="urlbuilder.js"></script>
+</body>
+</html>

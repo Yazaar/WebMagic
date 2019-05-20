@@ -1,0 +1,115 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: #eeeeee;
+}
+
+body {
+    background: linear-gradient(45deg, #8b0000, #4a8b00, #00388b, #74008b);
+    background-size: 1000%;
+    animation: bganimation 60s ease-in-out infinite;
+}
+
+h2 {
+    text-align: center;
+}
+
+#result {
+    text-align: center;
+    word-wrap: break-word;
+    width: 75vw;
+    margin: 1rem;
+    background: rgba(0, 0, 0, .5);
+    margin: .5rem auto 0 auto;
+    padding: .5rem 1rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+#result h1 {
+    font-size: 2rem;
+}
+
+#result p {
+    font-size: 1.2rem;
+}
+
+#build {
+    background: rgba(0, 0, 0, .5);
+    width: 75vw;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#build section {
+    margin: .5rem 0;
+    display: flex;
+    align-items: center;
+}
+
+#build section input[type='checkbox'] {
+    -webkit-appearance: none;
+    cursor: pointer;
+    outline: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: rgba(0, 0, 0, .7);
+    margin: 0 .5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#build section input[type='checkbox']::before {
+    content: '';
+    display: inline-block;
+    border-radius: 50%;
+    background: #00ff00;
+    height: 0;
+    width: 0;
+    transition: height 250ms ease-out, width 250ms ease-out;
+}
+
+#build section input[type='checkbox']:checked::before {
+    height: 1rem;
+    width: 1rem;
+}
+
+#build section input[type='text'], #build section input[type='number'] {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, .5);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    color: #000000;
+    padding:  .5rem 1rem;
+    flex: 1;
+}
+
+#build section p {
+    font-size: 1.2rem;
+}
+
+input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, .7);
+}
+
+input::-moz-placeholder {
+    color: rgba(0, 0, 0, .7);
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, .7);
+}
+
+@keyframes bganimation {
+     0% {
+         background-position-x: 0%;
+         background-position-y: 0%;
+     }
+     100% {
+         background-position-x: 100%;
+         background-position-y: 100%;
+     }
+}
