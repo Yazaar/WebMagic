@@ -2,6 +2,8 @@
 <h4>How to use:</h4>
 This is the URL: <a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/</a><br><br>
 
+Devoloped an URL builder: <a href="https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/urlbuilder.html">https://yazaar.github.io/Web-Functionalities/clocks/ParticleClock/urlbuilder.html</a><br><br>
+
 You may as well include this in your URL:<br>
 ?color=HEX_COLOR >> make the background to your chosen color, have to be a hex value (without the #)<br>
 or<br>
