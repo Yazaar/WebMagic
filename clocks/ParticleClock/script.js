@@ -13,15 +13,32 @@ if (URLParams.get("image") !== null){
     document.querySelector("body").style.background = "#" + URLParams.get("color")
 }
 
+let particle_count
 if (URLParams.get("particlecount") !== null){
-    if (parseInt(URLParams.get("particlecount")) !== NaN){
-        particle_count = parseInt(URLParams.get("particlecount"))
-    } else {
+    if (isNaN(parseInt(URLParams.get("particlecount")))){
         particle_count = 100
+    } else {
+        particle_count = parseInt(URLParams.get("particlecount"))
     }
 } else {
     particle_count = 100
 }
+
+let opacity
+if (URLParams.get("opacity") !== null){
+    if (isNaN(parseInt(URLParams.get("opacity")))){
+        opacity = 0.75
+    } else {
+        opacity = parseInt(URLParams.get("opacity"))/100
+        if (opacity < 0 ||opacity > 1){
+            opacity = 0.75
+        }
+    }
+} else {
+    opacity = 0.75
+}
+
+document.querySelector('section').style.background = 'rgba(0,0,0,' + opacity + ')'
 
 let particles = []
 
@@ -82,6 +99,7 @@ function createParticle(){
     element.style.height = radius + "px"
     element.style.left = x + "px"
     element.style.top = y + "px"
+    element.style.background = 'rgba(0,0,0,' + opacity + ')'
     document.querySelector("body").appendChild(element)
 }
 
