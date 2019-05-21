@@ -23,7 +23,8 @@ function updateURL(){
             struct += '&' + i + '=' + data[i]
         }
     }
-    document.querySelector('#result p').innerHTML = baseURL + struct
+    document.querySelector('#result a').href = baseURL + struct
+    document.querySelector('#result a').innerText = baseURL + struct
 }
 
 let checkboxes = document.querySelectorAll('input[type="checkbox"]')
