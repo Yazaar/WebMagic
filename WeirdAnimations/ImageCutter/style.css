@@ -1,0 +1,19 @@
+img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    transition: top .5s ease-in-out, left .5s ease-in-out;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: .3rem;
+    right: .3rem;
+}
+
+section p {
+    margin: 0;
+}
