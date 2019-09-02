@@ -16,16 +16,17 @@ if (true) {
         let xml = new XMLHttpRequest()
         xml.onreadystatechange = function () {
             if (xml.readyState === 4) {
-                lodaing = false
                 if (xml.status === 200) {
                     let xmlData = JSON.parse(xml.response).data
                     if(xmlData.length > 0){
                         getBadges(xmlData[0].id, xmlData[0].login)
                     } else {
-                        console.log('User not found')
+                        alert(username + ' not found')
+                        loading = false
                     }
                 } else {
                     console.log('error getting userid...')
+                    loading = false
                 }
             }
         }
@@ -52,6 +53,11 @@ if (true) {
     
     let parseBadgeResponse = function(badgeData, username) {
         let data = []
+        if (badgeData.badge_sets.subscriber === undefined) {
+            loading = false
+            alert(username + ' does not have any sub badges')
+            return
+        }
         let sub_badges = badgeData.badge_sets.subscriber.versions
         let sub_badge_keys = Object.keys(badgeData.badge_sets.subscriber.versions)
         for (let i of sub_badge_keys) {
