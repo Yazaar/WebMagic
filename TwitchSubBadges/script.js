@@ -1,4 +1,13 @@
 if (true) {
+    document.querySelector('#usernameInput').focused = false
+    document.querySelector('#usernameInput').addEventListener('focus', function(){
+        this.focused = true
+        
+    })
+    document.querySelector('#usernameInput').addEventListener('blur', function(){
+        this.focused = false
+    })
+
     let searched = []
     let resultData = {}
     let loading = false
@@ -143,7 +152,7 @@ if (true) {
     }
     
     window.addEventListener("keypress", (e) => {
-        if (e.path[0] == document.querySelector('#usernameInput') && e.key == "Enter") {
+        if (document.querySelector('#usernameInput').focused && e.key == "Enter") {
             document.querySelector('#searchButton').click()
         }
     })
