@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(0deg, rgba(243, 243, 243, 0.05) 0%, rgba(243, 243, 243, 0.05) 90%,rgba(162, 162, 162, 0.05) 90%, rgba(162, 162, 162, 0.05) 100%),linear-gradient(45deg, rgba(218, 218, 218, 0.03) 0%, rgba(218, 218, 218, 0.03) 44%,rgba(12, 12, 12, 0.03) 44%, rgba(12, 12, 12, 0.03) 100%),linear-gradient(135deg, rgba(50, 50, 50, 0.07) 0%, rgba(50, 50, 50, 0.07) 48%,rgba(149, 149, 149, 0.07) 48%, rgba(149, 149, 149, 0.07) 100%),linear-gradient(0deg, rgba(158, 158, 158, 0.1) 0%, rgba(158, 158, 158, 0.1) 48%,rgba(77, 77, 77, 0.1) 48%, rgba(77, 77, 77, 0.1) 100%),linear-gradient(135deg, rgba(184, 184, 184, 0.04) 0%, rgba(184, 184, 184, 0.04) 74%,rgba(20, 20, 20, 0.04) 74%, rgba(20, 20, 20, 0.04) 100%),linear-gradient(45deg, rgba(119, 119, 119, 0.04) 0%, rgba(119, 119, 119, 0.04) 42%,rgba(194, 194, 194, 0.04) 42%, rgba(194, 194, 194, 0.04) 100%),linear-gradient(135deg, rgba(14, 14, 14, 0.04) 0%, rgba(14, 14, 14, 0.04) 55%,rgba(84, 84, 84, 0.04) 55%, rgba(84, 84, 84, 0.04) 100%),linear-gradient(0deg, rgba(4, 4, 4, 0.1) 0%, rgba(4, 4, 4, 0.1) 30%,rgba(95, 95, 95, 0.1) 30%, rgba(95, 95, 95, 0.1) 100%),linear-gradient(135deg, rgba(83, 83, 83, 0.05) 0%, rgba(83, 83, 83, 0.05) 47%,rgba(80, 80, 80, 0.05) 47%, rgba(80, 80, 80, 0.05) 100%),linear-gradient(90deg, hsl(274,69%,68%),hsl(274,69%,68%));
+    background-size: 100vw 100vh;
+    background-repeat: repeat;
+}
+
+header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+header h1 {
+    display: inline-block;
+    text-align: center;
+    background: linear-gradient(45deg, #5a075a 43%, #6e206e 50%, #5a075a 60%);
+    background-size: 1000%;
+    color: rgba(255, 255, 255, .9);
+    padding: 1rem;
+    font-size: 2rem;
+    border-bottom-right-radius: 1rem;
+    animation: headerH1Animation 7s linear infinite;
+}
+
+
+#searchArea {
+    margin-top: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+#usernameInput {
+    text-align: center;
+    height: 3rem;
+    width: 19rem;
+    max-width: 100%;
+    padding: 0 0 0 1rem;
+    font-size: 2rem;
+    outline: none;
+    border: none;
+    border-right: #5a065a solid .1rem;
+    border-top-left-radius: 99999rem;
+    border-bottom-left-radius: 99999rem;
+    text-overflow: ellipsis;
+}
+
+#searchArea i {
+    background: #ffffff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+/Edge */
+    user-select: none;
+    /* Standard */
+}
+
+#searchArea i:hover {
+    background: #cccccc;
+}
+
+#searchArea i:active {
+    background: #aaaaaa;
+}
+
+#results {
+    margin-top: 3rem;
+}
+
+#results h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: capitalize;
+}
+
+.subBadgeResult {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.subBadge {
+    background: rgba(90, 6, 90, 0.4);
+    margin: .5rem;
+    padding: .5rem;
+    width: 9rem;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.subBadge img {
+    margin-top: .5rem;
+    width: 6rem;
+    height: 6rem;
+}
+
+.subBadge p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+@keyframes headerH1Animation {
+    0% {
+        background-position: 0% 0%;
+    }
+    28% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+@media screen and (max-width:48rem) {
+    header {
+        flex-direction: column;
+    }
+    #usernameInput {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 0 0 0 .5rem;
+    }
+    
+    #searchArea i {
+        border-top-right-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+    }
+}
+
+@media screen and (max-width:25rem) {
+    header {
+        align-items: center;
+    }
+
+    header h1 {
+        width: 100%;
+        padding: 1rem 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #usernameInput {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-right: none;
+        padding: 0;
+        width: 100%;
+        font-size: 1.5rem;
+    }
+
+    #searchArea {
+        margin: 0;
+        background: #5a065a;
+        display: block;
+    }
+
+    #searchArea i {
+        display: none;
+    }
+}
