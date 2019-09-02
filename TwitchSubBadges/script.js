@@ -2,6 +2,7 @@ if (true) {
     let searched = []
     let resultData = {}
     let loading = false
+    let processingInput = false
     
     let startSearch = function(username) {
         if (typeof (username) != 'string') {
@@ -103,18 +104,25 @@ if (true) {
         loading = false
     }
     
-    document.querySelector('#searchButton').addEventListener('click', function () {
+    document.querySelector('#searchButton').addEventListener('click', function(){
+        if (processingInput === true){
+            return
+        }
+        let username = document.querySelector('#usernameInput').value
+        document.querySelector('#usernameInput').value = ''
+        processInput(username)
+    })
+    
+    let processInput =  function(data) {
         if (loading === true) {
             return
         }
         
-        let username = document.querySelector('#usernameInput').value.replace(/\s/g, '').replace(/&/g, '').toLowerCase()
+        let username = data.replace(/\s/g, '').replace(/&/g, '').toLowerCase()
         
         if (username.length === 0) {
             return
         }
-        
-        document.querySelector('#usernameInput').value = ''
     
         loading = true
         
@@ -132,7 +140,7 @@ if (true) {
     
         searched = username
         startSearch(username)
-    })
+    }
     
     window.addEventListener("keypress", (e) => {
         if (e.path[0] == document.querySelector('#usernameInput') && e.key == "Enter") {
@@ -142,7 +150,19 @@ if (true) {
     
     let params = new URLSearchParams(window.location.search)
     if (params.get("user") !== null) {
-        document.querySelector('#usernameInput').value = params.get("user")
-        document.querySelector('#searchButton').click()
+        processingInput = true
+        params = params.getAll("user")
+        processInput(params.shift())
+        let loop = setInterval(() => {
+            if (loading === false){
+                if(params.length > 0){
+                    processInput(params.shift())
+                } else {
+                    loading = false
+                    processingInput = false
+                    clearInterval(loop)
+                }
+            }
+        }, 500);
     }
 }
