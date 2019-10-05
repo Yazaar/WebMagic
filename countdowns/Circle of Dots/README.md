@@ -1,5 +1,5 @@
 <h1>Countdown | Circle of Dots</h1>
-<h3><a href="https://yazaar.github.io/Web-Functionalities/countdowns/Circle%20of%20Dots/">project URL</a></h3>
+<h3><a href="https://yazaar.github.io/WebMagic/countdowns/Circle%20of%20Dots/">project URL</a></h3>
 <br><br>
 <h2>Change countdown timer:</h2>
 <ul>
