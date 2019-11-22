@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #aaaaaa;
+}
+
+body {
+    /* background from https://www.gradientmagic.com */
+    background: repeating-linear-gradient(45deg, rgba(112, 112, 112, 0.12) 0px, rgba(112, 112, 112, 0.12) 42px, rgba(105, 105, 105, 0.12) 42px, rgba(105, 105, 105, 0.12) 83px, rgba(206, 206, 206, 0.12) 83px, rgba(206, 206, 206, 0.12) 103px, rgba(130, 130, 130, 0.12) 103px, rgba(130, 130, 130, 0.12) 125px, rgba(51, 51, 51, 0.12) 125px, rgba(51, 51, 51, 0.12) 174px, rgba(220, 220, 220, 0.12) 174px, rgba(220, 220, 220, 0.12) 199px), repeating-linear-gradient(45deg, rgba(192, 192, 192, 0.12) 0px, rgba(192, 192, 192, 0.12) 13px, rgba(119, 119, 119, 0.12) 13px, rgba(119, 119, 119, 0.12) 29px, rgba(157, 157, 157, 0.12) 29px, rgba(157, 157, 157, 0.12) 75px, rgba(223, 223, 223, 0.12) 75px, rgba(223, 223, 223, 0.12) 121px, rgba(80, 80, 80, 0.12) 121px, rgba(80, 80, 80, 0.12) 169px, rgba(208, 208, 208, 0.12) 169px, rgba(208, 208, 208, 0.12) 194px), repeating-linear-gradient(45deg, rgba(44, 44, 44, 0.1) 0px, rgba(44, 44, 44, 0.1) 147px, rgba(38, 38, 38, 0.1) 147px, rgba(38, 38, 38, 0.1) 248px, rgba(1, 1, 1, 0.1) 248px, rgba(1, 1, 1, 0.1) 325px, rgba(34, 34, 34, 0.1) 325px, rgba(34, 34, 34, 0.1) 434px, rgba(98, 98, 98, 0.1) 434px, rgba(98, 98, 98, 0.1) 534px, rgba(79, 79, 79, 0.1) 534px, rgba(79, 79, 79, 0.1) 630px), linear-gradient(90deg, rgb(153, 255, 73), rgb(51, 204, 35));
+    background-size: 100vw 200vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    margin-top: 12.5vh;
+    width: 75vw;
+    height: 75vh;
+    overflow: hidden;
+    position: relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 20px;
+    height: 20px;
+    background: #adff2f;
+    border-radius: 5px;
+}
+
+#movable1,
+#movable2 {
+    background: url(../img/movable.png);
+    height: 10px;
+    width: 40px;
+    position: absolute;
+    transform: translateX(-50%);
+    cursor: grab;
+}
+
+#movable1 {
+    transform: translateX(-50%);
+}
+
+#movable1:active,
+#movable2:active {
+    cursor: grabbing;
+}
+
+#start,
+#goal {
+    background: url(../img/static.jpg);
+    height: 10px;
+    width: 40px;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+#timer {
+    position: absolute;
+    top: 0;
+    left: .2rem;
+    font-size: 1.5rem;
+}
+
+section#scoreboard {
+    text-align: center;
+    margin: .5rem 0 .5rem 0;
+    width: 75vw;
+    box-sizing: border-box;
+    padding: .5rem 0;
+}
+
+section#scoreboard section.row {
+    margin-top: .25rem;
+}
+
+
+section#scoreboard section.row .position {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: solid .1rem #aaaaaa;
+    margin-right: .2rem;
+}
+
+section#scoreboard section.row span.duration {
+    cursor: pointer;
+}
+
+section#scoreboard section.row span.duration:hover {
+    text-decoration: line-through;
+}
+
+section#gettingStarted {
+    width: 75vw;
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+.standardBackground {
+    background: rgba(0, 0, 0, .5);
+    border: .1rem solid #000000;
+}
+
+section#gettingStarted .control {
+    border: .1rem solid #000000;
+    padding: .25rem .5rem;
+    display: inline-block;
+    margin: .25rem .5rem;
+    border-radius: 1rem;
+}
+
+section#gettingStarted p.introduction {
+    margin: 0 1rem;
+    font-size: 1.2rem;
+}
