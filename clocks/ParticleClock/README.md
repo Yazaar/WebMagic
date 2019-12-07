@@ -1,4 +1,5 @@
 <h1>Particle Clock</h1>
+<h3><a href="https://www.youtube.com/watch?v=_K08RUUJQfc">Check this YouTube video out for a preview and use guide</a></h3>
 <h4>How to use:</h4>
 This is the URL: <a href="https://yazaar.github.io/WebMagic/clocks/ParticleClock/">https://yazaar.github.io/WebMagic/clocks/ParticleClock/</a><br><br>
 
