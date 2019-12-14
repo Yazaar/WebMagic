@@ -138,8 +138,8 @@
         // calculate the positions absolute positions for all game objects (x & y-axis)
         movable1.style.left = main.offsetWidth / 2 + 'px';
         movable2.style.left = main.offsetWidth / 2 + 'px';
-        movable1.style.top = main.offsetHeight * 0.4 + 'px';
-        movable2.style.top = main.offsetHeight * 0.6 + 'px';
+        movable1.style.top = ((main.offsetHeight / 2) + movable1.offsetHeight * 5) + 'px';
+        movable2.style.top = ((main.offsetHeight / 2) - movable2.offsetHeight * 5) + 'px';
         player.style.top = main.offsetHeight * 0.45 + 'px';
         player.style.left = main.offsetWidth / 2 + 'px';
         start.style.top = main.offsetHeight / 2 + 'px';
