@@ -1,0 +1,242 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../img/mountains.jpg) no-repeat 0 0;
+    background-size: 100vw 120vh;
+    background-attachment: fixed;
+    min-height: 100vh;
+
+    header {
+        background: url(../img/rocks.jpg);
+        color: #ffffff;
+        box-shadow: #000000 0rem .5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1rem;
+        div.left {
+            display: flex;
+            align-items: center;
+            img {
+                height: 6rem;
+            }
+        }
+    }
+    
+    main {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+
+        .tip {
+            background: #ffffff;
+            margin-top: .2rem;
+            padding: .2rem;
+            border-radius: .5rem;
+        }
+
+        .colorRed {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        
+        .colorGreen {
+            color: #00ff00;
+            font-weight: bold;
+        }
+        
+        .colorBlue {
+            color: #0000ff;
+            font-weight: bold;
+        }
+
+        .general div.left {
+            display: flex;
+            flex-direction: column;
+            .scoreWrapper {
+                align-self: flex-end;
+                border-top-left-radius: 1rem;
+                border-bottom-left-radius: 1rem;
+                border-right: #000000 .1rem solid;
+            }
+        }
+        
+        .general div.right {
+            display: flex;
+            flex-direction: column;
+            
+            .scoreWrapper {
+                align-self: flex-start;
+                border-top-right-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+            }
+        }
+
+        .pokeImage {
+            height: 25vw;
+            width: 25vw;
+        }
+
+        .scoreWrapper {
+            background: #ffffff;
+            display: inline-block;
+            padding: .5rem 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            .scoreTitle {
+                font-size: 2rem;
+            }
+            .scoreResult {
+                font-size: 1.5rem;
+            }
+        }
+    
+        .detailsTitle {
+            background: #ffffff;
+            display: inline-block;
+            font-size: 2.2rem;
+            padding: .5rem 1.5rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+        
+        h3.subtitle {
+            display: inline-block;
+            background: #ffffff;
+            margin-top: 1rem;
+            padding: .5rem 1.5rem;
+            font-size: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .typesArea .left {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .typesArea .right {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .typesArea .left .types, .typesArea .right .types {
+            display: inline-block;
+        }
+
+
+        .types {
+            background: #ffffff;
+            margin-top: .3rem;
+            padding: .5rem 1.5rem;
+            border-radius: 1rem;
+            
+            p {
+                font-size: 1.3rem;
+                text-align: center;
+            }
+        }
+
+        .left .types {
+            margin-right: .25rem;
+        }
+
+        .right .types {
+            margin-left: .25rem;
+        }
+        
+        .left .baseStat {
+            background: #ffffff;
+            margin-top: .25rem;
+            padding: .5rem 1.5rem;
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            border-right: #000000 .1rem solid;
+        }
+        
+        .right .baseStat {
+            background: #ffffff;
+            margin-top: .25rem;
+            padding: .5rem 1.5rem;
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+
+        .bestStat {
+            background: #999999 !important;
+        }
+    }
+
+    footer {
+        background: url(../img/rocks.jpg);
+        box-shadow: #000000 0rem -.5rem 1rem;
+        margin-top: 2rem;
+        padding: .5rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left {
+            margin-left: 1rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            img {
+                height: 6rem;
+            }
+        }
+        .right {
+            margin-right: 1rem;
+            color: #ffffff;
+            a {
+                color: #ffffff;
+                &:hover {
+                    color: #aaaaaa;
+                }
+            }
+        }
+    }
+
+    select {
+        background: rgba(255, 255, 255, 0.75);
+        outline: none;
+        font-size: 1rem;
+        border-radius: 1rem;
+        padding: .1rem .3rem;
+        width: 13rem;
+    }
+}
+
+.horizontalSplit {
+    display: flex;
+}
+
+.fillFlex {
+    flex: 1;
+}
+
+.selfCenter {
+    align-self: center;
+}
+
+@media screen and (max-width:45rem) {
+    footer {
+        flex-direction: column;
+        .right {
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width:33rem) {
+    header {
+        flex-direction: column;
+    }
+    body main .pokeImage {
+        height: 45vw;
+        width: 45vw;
+    }
+}

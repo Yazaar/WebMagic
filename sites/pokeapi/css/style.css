@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url(../img/mountains.jpg) no-repeat 0 0;
+  background-size: 100vw 120vh;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body header {
+  background: url(../img/rocks.jpg);
+  color: #ffffff;
+  -webkit-box-shadow: #000000 0rem .5rem 1rem;
+          box-shadow: #000000 0rem .5rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 1rem;
+}
+
+body header div.left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body header div.left img {
+  height: 6rem;
+}
+
+body main {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .tip {
+  background: #ffffff;
+  margin-top: .2rem;
+  padding: .2rem;
+  border-radius: .5rem;
+}
+
+body main .colorRed {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+body main .colorGreen {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+body main .colorBlue {
+  color: #0000ff;
+  font-weight: bold;
+}
+
+body main .general div.left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .general div.left .scoreWrapper {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-right: #000000 .1rem solid;
+}
+
+body main .general div.right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main .general div.right .scoreWrapper {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+body main .pokeImage {
+  height: 25vw;
+  width: 25vw;
+}
+
+body main .scoreWrapper {
+  background: #ffffff;
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+body main .scoreWrapper .scoreTitle {
+  font-size: 2rem;
+}
+
+body main .scoreWrapper .scoreResult {
+  font-size: 1.5rem;
+}
+
+body main .detailsTitle {
+  background: #ffffff;
+  display: inline-block;
+  font-size: 2.2rem;
+  padding: .5rem 1.5rem;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+body main h3.subtitle {
+  display: inline-block;
+  background: #ffffff;
+  margin-top: 1rem;
+  padding: .5rem 1.5rem;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+}
+
+body main .typesArea .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .typesArea .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main .typesArea .left .types, body main .typesArea .right .types {
+  display: inline-block;
+}
+
+body main .types {
+  background: #ffffff;
+  margin-top: .3rem;
+  padding: .5rem 1.5rem;
+  border-radius: 1rem;
+}
+
+body main .types p {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+body main .left .types {
+  margin-right: .25rem;
+}
+
+body main .right .types {
+  margin-left: .25rem;
+}
+
+body main .left .baseStat {
+  background: #ffffff;
+  margin-top: .25rem;
+  padding: .5rem 1.5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-right: #000000 .1rem solid;
+}
+
+body main .right .baseStat {
+  background: #ffffff;
+  margin-top: .25rem;
+  padding: .5rem 1.5rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+body main .bestStat {
+  background: #999999 !important;
+}
+
+body footer {
+  background: url(../img/rocks.jpg);
+  -webkit-box-shadow: #000000 0rem -.5rem 1rem;
+          box-shadow: #000000 0rem -.5rem 1rem;
+  margin-top: 2rem;
+  padding: .5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body footer .left {
+  margin-left: 1rem;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body footer .left img {
+  height: 6rem;
+}
+
+body footer .right {
+  margin-right: 1rem;
+  color: #ffffff;
+}
+
+body footer .right a {
+  color: #ffffff;
+}
+
+body footer .right a:hover {
+  color: #aaaaaa;
+}
+
+body select {
+  background: rgba(255, 255, 255, 0.75);
+  outline: none;
+  font-size: 1rem;
+  border-radius: 1rem;
+  padding: .1rem .3rem;
+  width: 13rem;
+}
+
+.horizontalSplit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.fillFlex {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.selfCenter {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+@media screen and (max-width: 45rem) {
+  footer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  footer .right {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 33rem) {
+  header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  body main .pokeImage {
+    height: 45vw;
+    width: 45vw;
+  }
+}
+/*# sourceMappingURL=style.css.map */
