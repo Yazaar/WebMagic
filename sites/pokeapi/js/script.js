@@ -61,7 +61,7 @@ function pokeApiResponse(response){
         var span3 = document.createElement('span');
         span3.innerText = ' ⬤';
         var pokePerk = strongWeakImmune(response.types[i].type.name);
-        // right attacks left
+        // left takes damage
         if (pokePerk.from.immune === true) {
             score += 25;
             span3.classList.add('colorGreen');
@@ -74,7 +74,7 @@ function pokeApiResponse(response){
             score += 5;
             span3.classList.add('colorRed');
         }
-        // left attacks right
+        // left deals damage
         if (pokePerk.to.immune === true) {
             score -= 25;
             span1.classList.add('colorGreen');
