@@ -202,9 +202,12 @@ document.querySelector('#pokeSelect').addEventListener('input', function(){
 function calcBG() {
     var windowHeight = window.innerHeight;
     var windowWidth = window.innerWidth;
+    var imageHeight = 900;
+    var imageWidth = 1350;
+    var heightScale = windowHeight / imageHeight;
     var scroll = (window.pageYOffset) / (document.body.clientHeight - windowHeight);
     var pushDistance = -scroll * (windowHeight/5);
-    if (windowWidth > 1300) {
+    if (windowWidth > imageWidth * heightScale) {
         document.body.style.background = 'url("img/mountains.jpg") 0px ' + pushDistance + 'px / 100vw 120vh no-repeat fixed';
     } else {
         document.body.style.background = 'url("img/mountains.jpg") 0px ' + pushDistance + 'px / auto 120vh no-repeat fixed';
