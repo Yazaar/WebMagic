@@ -24,7 +24,7 @@ body header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0 1rem;
+  padding: .25rem 1rem;
 }
 
 body header div.left {
@@ -184,7 +184,7 @@ body main .types {
 }
 
 body main .types p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
