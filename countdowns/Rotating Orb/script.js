@@ -2,9 +2,9 @@
     var ticker = false;
     var countdown = document.querySelector('#countdown');
     var rotator = document.querySelector('#rotator');
+    var params = new URLSearchParams(window.location.search);
 
-    function computeEndTime() {
-        var params = new URLSearchParams(window.location.search);
+    function computeEndTime(params) {
         var completeAt = new Date();
         var seconds = params.get('s');
         var minutes = params.get('m');
@@ -19,6 +19,20 @@
             completeAt.setHours(completeAt.getHours() + parseFloat(hours));
         }
         return completeAt;
+    }
+
+    function computeColors(params) {
+        var fontColor = params.get('fontColor');
+        var detailColor = params.get('detailColor');
+        if (/[a-fA-F0-9]{6}/.test(fontColor)) {
+            document.querySelector('#countdown').style.color = '#' + fontColor;
+        }
+        if (/[a-fA-F0-9]{6}/.test(detailColor)) {
+            document.querySelector('#circle').style.border = 'solid 1vmin #' + detailColor;
+            var orb = document.querySelector('#orb');
+            orb.style.boxShadow = '0 0 2vmin 2vmin #' + detailColor;
+            orb.style.background = '#' + detailColor;
+        }
     }
     
     function tick() {
@@ -44,7 +58,8 @@
         countdown.innerText = timeStr;
     }
 
-    var completeAt = computeEndTime();
+    var completeAt = computeEndTime(params);
+    computeColors(params);
 
     rotator.style.animation = 'rotate linear 1s infinite';
     rotator.addEventListener('animationstart', function(){
