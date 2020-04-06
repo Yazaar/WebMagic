@@ -1,6 +1,6 @@
 # rotating orb countdown
 
-### [project URL]([https://yazaar.github.io/WebMagic/countdowns/Rotating%20Orb))
+### [project URL](https://yazaar.github.io/WebMagic/countdowns/Rotating%20Orb)
 
 ## How to use
 
