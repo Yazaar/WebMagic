@@ -7,8 +7,11 @@
     function computeEndTime(params) {
         var completeAt = new Date();
         var seconds = params.get('s');
+        var setSeconds = params.get('S');
         var minutes = params.get('m');
+        var setMinutes = params.get('M');
         var hours = params.get('h');
+        var setHours = params.get('H');
         if (seconds !== null && isNaN(seconds) === false) {
             completeAt.setSeconds(completeAt.getSeconds() + parseFloat(seconds));
         }
@@ -17,6 +20,15 @@
         }
         if (hours !== null && isNaN(hours) === false) {
             completeAt.setHours(completeAt.getHours() + parseFloat(hours));
+        }
+        if (setSeconds !== null && isNaN(setSeconds) === false) {
+            completeAt.setSeconds(parseFloat(setSeconds));
+        }
+        if (setMinutes !== null && isNaN(setMinutes) === false) {
+            completeAt.setMinutes(parseFloat(setMinutes));
+        }
+        if (setHours !== null && isNaN(setHours) === false) {
+            completeAt.setHours(parseFloat(setHours));
         }
         return completeAt;
     }
