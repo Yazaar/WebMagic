@@ -1,0 +1,507 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #e2e2e2;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: url("../img/bg.jpg");
+  background-size: cover;
+  overflow: hidden;
+}
+
+body header {
+  height: 3.7rem;
+}
+
+body header h1 {
+  margin-left: .5rem;
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.7rem;
+  text-transform: uppercase;
+}
+
+body header h1 span {
+  font-size: 2.5rem;
+}
+
+body #app {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+body #app aside {
+  border-top: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  border-right: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  width: 0;
+  height: calc(100vh - 3.8rem);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+body #app aside.open {
+  width: 20rem;
+}
+
+body #app aside.open #blinder {
+  display: block;
+}
+
+body #app aside #blinder {
+  display: none;
+}
+
+body #app aside #blinder .title {
+  margin-top: .5rem;
+  text-align: center;
+}
+
+body #app aside #blinder .tools {
+  margin: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body #app aside #blinder .tools input {
+  background: transparent;
+  border: rgba(255, 255, 255, 0.2) 0.1rem solid;
+  font-size: 1.2rem;
+  padding: .2rem .5rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  outline: none;
+  border-radius: 1rem;
+  width: 12rem;
+}
+
+body #app aside #blinder .tools #newNoteBTN {
+  background: transparent;
+  outline: none;
+  border-top: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  border-right: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  border-bottom: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  border-left: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  padding: .2rem .7rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-top: .5rem;
+}
+
+body #app aside #blinder .tools #newNoteBTN:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app aside #blinder .tools #newNoteBTN:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body #app aside #blinder #noteList {
+  height: calc(100vh - 11.4rem);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+body #app aside #blinder #noteList .noteItem {
+  padding: .5rem;
+  border-top: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+body #app aside #blinder #noteList .noteItem:last-of-type {
+  border-bottom: rgba(255, 255, 255, 0.2) solid 0.1rem;
+}
+
+body #app aside #blinder #noteList .noteItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app aside #blinder #noteList .noteItem:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body #app aside #blinder #noteList .noteItem .noteTools {
+  display: none;
+}
+
+body #app aside #blinder #noteList .noteItem .noteTools div {
+  display: inline-block;
+}
+
+body #app aside #blinder #noteList .noteItem.activeNote {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app aside #blinder #noteList .noteItem.activeNote .noteTools {
+  display: block;
+}
+
+body #app aside #blinder #noteList .noteItem .noteTitle {
+  font-size: 1.4rem;
+  height: 1.5rem;
+  overflow: hidden;
+  word-wrap: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+body #app aside #blinder #noteList .noteItem .noteTimestamp {
+  color: rgba(226, 226, 226, 0.7);
+  font-size: .75rem;
+}
+
+body #app main {
+  border-top: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  overflow: hidden;
+}
+
+body #app main #leftarrow {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  -webkit-transform: translate(0, -50%) scaleY(1.5) rotate(180deg);
+          transform: translate(0, -50%) scaleY(1.5) rotate(180deg);
+  font-size: 3rem;
+  border: rgba(255, 255, 255, 0.2) solid 0.1rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0 .5rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+body #app main #leftarrow.open {
+  -webkit-transform: translate(0, -50%) scaleY(1.5);
+          transform: translate(0, -50%) scaleY(1.5);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+body #app main #leftarrow:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app main #note {
+  margin: 0 .5rem 0 3.5rem;
+}
+
+body #app main #note #moveBack {
+  display: none;
+}
+
+body #app main #note .left {
+  text-align: left;
+}
+
+body #app main #note .center {
+  text-align: center;
+}
+
+body #app main #note .right {
+  text-align: right;
+}
+
+body #app main #note .tools {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 3rem;
+}
+
+body #app main #note .tools .group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: .2rem;
+  border: rgba(255, 255, 255, 0.2) solid 0.1rem;
+}
+
+body #app main #note .tools .group .groupItem {
+  cursor: pointer;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 2rem;
+  width: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body #app main #note .tools .group .groupItem.left div, body #app main #note .tools .group .groupItem.center div, body #app main #note .tools .group .groupItem.right div {
+  font-size: 0.7rem;
+  line-height: 0.45rem;
+  -webkit-transform: translateY(-0.3rem);
+          transform: translateY(-0.3rem);
+}
+
+body #app main #note .tools .group .groupItem.orderedList, body #app main #note .tools .group .groupItem.unorderedList, body #app main #note .tools .group .groupItem.image, body #app main #note .tools .group .groupItem.checklist {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.2rem;
+}
+
+body #app main #note .tools .group .groupItem.text {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+body #app main #note .tools .group .groupItem:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body #app main #note #title {
+  background: rgba(255, 255, 255, 0.2);
+  padding: .1rem .5rem;
+  font-size: 1.7rem;
+  height: 2rem;
+  overflow: hidden;
+}
+
+body #app main #note #title:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body #app main #note #content {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background: rgba(255, 255, 255, 0.2);
+  padding: .6rem .5rem .5rem .5rem;
+  height: calc(100vh - 11rem);
+  overflow-Y: scroll;
+}
+
+body #app main #note #content p {
+  min-height: 1rem;
+}
+
+body #app main #note #content p:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app main #note #content .noteBlock {
+  margin-top: .7rem;
+  position: relative;
+}
+
+body #app main #note #content .noteBlock.activeBlock {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app main #note #content .noteBlock.activeBlock .blockTools {
+  display: inline-block;
+}
+
+body #app main #note #content .noteBlock.activeBlock .image .imageWrapper:hover .imageTools, body #app main #note #content .noteBlock.activeBlock .image .imageWrapper:active .imageTools {
+  display: inline-block;
+}
+
+body #app main #note #content .noteBlock .blockTools {
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  padding: .1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+body #app main #note #content .noteBlock .blockTools div {
+  cursor: pointer;
+  display: inline-block;
+}
+
+body #app main #note #content .noteBlock .blockTools div svg {
+  font-size: 1rem;
+}
+
+body #app main #note #content .noteBlock .image {
+  min-height: 1rem;
+}
+
+body #app main #note #content .noteBlock .image .imageWrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+body #app main #note #content .noteBlock .image .imageWrapper .imageTools {
+  display: none;
+  position: absolute;
+  white-space: nowrap;
+  top: 0;
+  left: 0;
+}
+
+body #app main #note #content .noteBlock .image .imageWrapper .imageTools div {
+  cursor: pointer;
+  display: inline-block;
+}
+
+body #app main #note #content .noteBlock .image:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app main #note #content .noteBlock .unorderedList, body #app main #note #content .noteBlock .orderedList {
+  min-height: 1rem;
+  max-width: 100%;
+  margin-left: 1.5rem;
+}
+
+body #app main #note #content .noteBlock .unorderedList:hover, body #app main #note #content .noteBlock .orderedList:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body #app main #note #content .noteBlock .unorderedList li p:empty, body #app main #note #content .noteBlock .orderedList li p:empty {
+  display: inline-block;
+  width: 100%;
+}
+
+body #app main #note #content .noteBlock .checklistItem {
+  margin-top: .2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  padding-right: 1.5rem;
+}
+
+body #app main #note #content .noteBlock .checklistItem:first-of-type {
+  margin-top: 0;
+}
+
+body #app main #note #content .noteBlock .checklistItem .bullet {
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  margin-right: .5rem;
+  border-radius: 50%;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+body #app main #note #content .noteBlock .checklistItem .bullet.unchecked {
+  background: rgba(255, 0, 0, 0.5);
+}
+
+body #app main #note #content .noteBlock .checklistItem .bullet.unchecked:hover {
+  background: rgba(255, 0, 0, 0.7);
+}
+
+body #app main #note #content .noteBlock .checklistItem .bullet.checked {
+  background: rgba(0, 255, 0, 0.5);
+}
+
+body #app main #note #content .noteBlock .checklistItem .bullet.checked:hover {
+  background: rgba(0, 255, 0, 0.7);
+}
+
+body #app main #note #content .noteBlock .checklistItem p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  width: 100%;
+}
+
+@media screen and (max-width: 42rem) {
+  header {
+    text-align: center;
+  }
+  #leftarrow {
+    display: none;
+  }
+  body #app main #note {
+    margin: 0 .5rem;
+  }
+  body #app aside #blinder #noteList .noteItem .noteTools {
+    display: block;
+  }
+  body #app main #note #moveBack {
+    display: block;
+    background: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    margin-top: .3rem;
+    font-size: 1.2rem;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer;
+  }
+  body #app aside {
+    width: 100%;
+  }
+  body #app aside.open {
+    width: 100%;
+  }
+  body #app aside.showingNote {
+    display: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #e2e2e2;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: url('../img/bg.jpg');
+    background-size: cover;
+    overflow: hidden;
+
+    header {
+        height: 3.7rem;
+        h1 {
+            margin-left: .5rem;
+            display: inline-block;
+            text-align: center;
+            font-size: 2rem;
+            line-height: 1.7rem;
+            text-transform: uppercase;
+            span {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    #app {
+        flex: 1;
+        display: flex;
+        position: relative;
+
+        aside {
+            border-top: rgba(255, 255, 255, .2) solid .1rem;
+            border-right: rgba(255, 255, 255, .2) solid .1rem;
+            width: 0;
+            height: calc(100vh - 3.8rem);
+            flex-shrink: 0;
+            
+            &.open {
+                width: 20rem;
+
+                #blinder {
+                    display: block;
+                }
+            }
+
+            #blinder {
+                display: none;
+                
+                .title {
+                    margin-top: .5rem;
+                    text-align: center;
+                }
+                
+                .tools {
+                    margin: .5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    input {
+                        background: transparent;
+                        border: rgba(255, 255, 255, .2) .1rem solid;
+                        font-size: 1.2rem;
+                        padding: .2rem .5rem;
+                        flex: 1;
+                        outline: none;
+                        border-radius: 1rem;
+                        width: 12rem;
+                    }
+                    
+                    #newNoteBTN {
+                        background: transparent;
+                        outline: none;
+                        border-top: rgba(255, 255, 255, .2) solid .1rem;
+                        border-right: rgba(255, 255, 255, .2) solid .1rem;
+                        border-bottom: rgba(255, 255, 255, .2) solid .1rem;
+                        border-left: rgba(255, 255, 255, .2) solid .1rem;
+                        padding: .2rem .7rem;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                        margin-top: .5rem;
+    
+                        &:hover {
+                            background: rgba(255, 255, 255, .1);
+                        }
+                        &:active {
+                            background: rgba(255, 255, 255, .2);
+                        }
+                    }
+                }
+
+                #noteList {
+                    height: calc(100vh - 11.4rem);
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+                    .noteItem {
+                        padding: .5rem;
+                        border-top: rgba(255, 255, 255, .2) solid .1rem;
+                        cursor: pointer;
+                        user-select: none;
+
+                        &:last-of-type {
+                            border-bottom: rgba(255, 255, 255, .2) solid .1rem;
+                        }
+                        &:hover {
+                            background: rgba(255, 255, 255, .1);
+                        }
+                        &:active {
+                            background: rgba(255, 255, 255, .2);
+                        }
+
+                        .noteTools {
+                            display: none;
+                            div {
+                                display: inline-block;
+                            }
+                        }
+                        &.activeNote {
+                            background: rgba(255, 255, 255, .1);
+                            .noteTools {
+                                display: block;
+                            }
+                        }
+
+                        .noteTitle {
+                            font-size: 1.4rem;
+                            height: 1.5rem;
+                            overflow: hidden;
+                            word-wrap: none;
+                            white-space: nowrap;
+                            width: 100%;
+                        }
+    
+                        .noteTimestamp {
+                            color: rgba(226, 226, 226, 0.7);
+                            font-size: .75rem;
+                        }
+                    }
+                }
+            }
+        }
+        
+        main {
+            border-top: rgba(255, 255, 255, .2) solid .1rem;
+            position: relative;
+            flex-grow: 1;
+            overflow: hidden;
+
+            #leftarrow {
+                position: absolute;
+                left: 0;
+                top: 50%;
+                border-top-left-radius: 50%;
+                border-bottom-left-radius: 50%;
+                transform: translate(0, -50%) scaleY(1.5) rotate(180deg);
+                font-size: 3rem;
+                border: rgba(255, 255, 255, .2) solid .1rem;
+                background: rgba(255, 255, 255, .1);
+                padding: 0 .5rem;
+                user-select: none;
+                cursor: pointer;
+                &.open {
+                    transform: translate(0, -50%) scaleY(1.5);
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-top-right-radius: 50%;
+                    border-bottom-right-radius: 50%;
+                }
+                &:hover {
+                    background: rgba(255, 255, 255, .1);
+                }
+            }
+
+            #note {
+                #moveBack {
+                    display: none;
+                }
+
+                margin: 0 .5rem 0 3.5rem;
+                .left {
+                    text-align: left;
+                }
+                .center {
+                    text-align: center;
+                }
+                .right {
+                    text-align: right;
+                }
+
+                .tools {
+                    display: flex;
+                    align-items: center;
+                    height: 3rem;
+                    .group {
+                        display: inline-flex;
+                        justify-content: center;
+                        user-select: none;
+                        margin: .2rem;
+                        border: rgba(255, 255, 255, .2) solid .1rem;
+
+                        .groupItem {
+                            cursor: pointer;
+                            flex: 1;
+                            height: 2rem;
+                            width: 2rem;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            &.left, &.center, &.right {
+                                div {
+                                    font-size: 0.7rem;
+                                    line-height: 0.45rem;
+                                    transform: translateY(-.3rem);
+                                }
+                            }
+                            &.orderedList, &.unorderedList, &.image, &.checklist{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                font-size: 1.2rem;
+                            }
+                            &.text {
+                                text-align: center;
+                                font-size: 1.3rem;
+                            }
+                            &:hover {
+                                background: rgba(255, 255, 255, .3);
+                            }
+                        }
+                    }
+                }
+                
+                #title {
+                    background: rgba(255, 255, 255, .2);
+                    padding: .1rem .5rem;
+                    font-size: 1.7rem;
+                    height: 2rem;
+                    overflow: hidden;
+                    &:hover {
+                        background: rgba(255, 255, 255, .3);
+                    }
+                }
+                
+                #content {
+                    user-select: none;
+                    background: rgba(255, 255, 255, .2);
+                    padding: .6rem .5rem .5rem .5rem;
+                    height: calc(100vh - 11rem);
+                    overflow-Y: scroll;
+
+                    p {
+                        min-height: 1rem;
+                        &:hover {
+                            background: rgba(255, 255, 255, .1);
+                        }
+                    }
+                    
+                    .noteBlock {
+                        margin-top: .7rem;
+                        position: relative;
+                        &.activeBlock {
+                            background: rgba(255, 255, 255, .1);
+                            .blockTools {
+                                display: inline-block;
+                            }
+
+                            .image .imageWrapper:hover, .image .imageWrapper:active {
+                                .imageTools {
+                                    display: inline-block;
+                                }
+                            }
+                        }
+
+                        .blockTools {
+                            display: none;
+                            background: rgba(0, 0, 0, .6);
+                            padding: .1rem;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            transform: translateY(-100%);
+                            div {
+                                cursor: pointer;
+                                display: inline-block;
+                                svg {
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+
+                        .image {
+                            min-height: 1rem;
+                            .imageWrapper {
+                                position: relative;
+                                display: inline-block;
+                                max-width: 100%;
+                                
+                                .imageTools {
+                                    display: none;
+                                    position: absolute;
+                                    white-space: nowrap;
+                                    top: 0;
+                                    left: 0;
+    
+                                    div {
+                                        cursor: pointer;
+                                        display: inline-block;
+                                    }
+                                }
+                            }
+                            &:hover {
+                                background: rgba(255, 255, 255, .1);
+                            }
+                        }
+                        
+                        .unorderedList, .orderedList {
+                            min-height: 1rem;
+                            max-width: 100%;
+                            margin-left: 1.5rem;
+                            
+                            &:hover {
+                                background: rgba(255, 255, 255, .1);
+                            }
+                            
+                            li p:empty {
+                                display: inline-block;
+                                width: 100%;
+                            }
+                        }
+
+                        .checklistItem {
+                            margin-top: .2rem;
+                            display: flex;
+                            overflow: hidden;
+                            padding-right: 1.5rem;
+                            
+                            &:first-of-type {
+                                margin-top: 0;
+                            }
+
+                            .bullet {
+                                cursor: pointer;
+                                width: 1rem;
+                                height: 1rem;
+                                margin-right: .5rem;
+                                border-radius: 50%;
+                                flex-shrink: 0;
+
+                                &.unchecked {
+                                    background: rgba(255, 0, 0, .5);
+                                    &:hover {
+                                        background: rgba(255, 0, 0, .7);
+                                    }
+                                }
+                                &.checked {
+                                    background: rgba(0, 255, 0, .5);
+                                    &:hover {
+                                        background: rgba(0, 255, 0, .7);
+                                    }
+                                }
+                            }
+                            p {
+                                flex: 1;
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 42rem) {
+    header {
+        text-align: center;
+    }
+
+    #leftarrow {
+        display: none;
+    }
+
+    body #app main #note {
+        margin: 0 .5rem;
+    }
+
+    body #app aside #blinder #noteList .noteItem .noteTools {
+        display: block;
+    }
+
+    body #app main #note #moveBack {
+        display: block;
+        background: rgba(255, 255, 255, .3);
+        text-align: center;
+        margin-top: .3rem;
+        font-size: 1.2rem;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    body #app aside {
+        width: 100%;
+        &.open {
+            width: 100%;
+        }
+
+        &.showingNote {
+            display: none;
+        }
+    }
+}

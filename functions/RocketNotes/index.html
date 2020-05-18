@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Notes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Rocket<br><span>Notes</span></h1>
+    </header>
+    <div id="app">
+        <aside v-bind:class="{open: showNotes, showingNote: currentNote !== null}">
+            <section id="blinder">
+                <h2 class="title">My Notes</h2>
+                <section class="tools">
+                    <input type="text" placeholder="Filter..." v-on:input="saveFilter">
+                    <button v-on:click="newNote" id="newNoteBTN">New Note</button>
+                </section>
+                <div id="noteList">
+                    <div v-for="note, index in notes" v-if="checkToDisplay(note)" class="noteItem" :class="{ 'activeNote' : index == currentNoteIndex}" v-on:click="displayNote(note, index)">
+                        <h3 class="noteTitle" v-html="note.title"></h3>
+                        <p class="noteTimestamp" v-html="note.lastEdited"></p>
+                        <div class="noteTools" v-on:click.stop>
+                            <div v-on:click="deleteNote(index)" title="delete note">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                            <div v-on:click="copyNote(index)" title="copy note">
+                                <i class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+        <main>
+            <div id="leftarrow" v-on:click="toggleView" v-bind:class="{open: showNotes}">&lt;</div>
+            <div id="note" v-if="currentNote !== null">
+                <div id="moveBack" v-on:click="moveBack">Go Back</div>
+                <div class="tools">
+                    <div class="group">
+                        <div class="groupItem left" title="text to the left" v-on:click="changeTextAlign">
+                            <div>___</div>
+                            <div>____</div>
+                            <div>__</div>
+                        </div>
+                        <div class="groupItem center" title="center text" v-on:click="changeTextAlign">
+                            <div>___</div>
+                            <div>____</div>
+                            <div>__</div>
+                        </div>
+                        <div class="groupItem right" title="text to the right" v-on:click="changeTextAlign">
+                            <div>___</div>
+                            <div>____</div>
+                            <div>__</div>
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="groupItem unorderedList" title="add unordered list" v-on:click="newUnorderedListElement">
+                            <i class="fas fa-list-ul"></i>
+                        </div>
+                        <div class="groupItem orderedList" title="add ordered list" v-on:click="newOrderedListElement">
+                            <i class="fas fa-list-ol"></i>
+                        </div>
+                        <div class="groupItem image" title="add image" v-on:click="newImageElement">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <div class="groupItem checklist" title="add checklist" v-on:click="newChecklistElement">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="groupItem text" title="add text" v-on:click="newTextElement">
+                            T
+                        </div>
+                    </div>
+                </div>
+                <h1 id="title" @input="titleChange" v-on:click="selectNode(null)" v-html="currentNote.title" contenteditable></h1>
+                <div id="content">
+                    <div class="noteBlock" v-for="block, index in currentNote.content" :class="{ 'activeBlock' : index == selectedNodeIndex}">
+                        <div class="text" v-if="block.type === 'text'">
+                            <div class="blockTools" v-on:click.stop :key="index">
+                                <div v-on:click="selectNode(null)" title="unselect block">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div v-on:click="deleteBlock" title="delete block">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div v-on:click="upBlock" title="move block up">
+                                    <i class="fas fa-chevron-circle-up"></i>
+                                </div>
+                                <div v-on:click="downBlock" title="move block down">
+                                    <i class="fas fa-chevron-circle-down"></i>
+                                </div>
+                            </div>
+                            <p @input="textChange" :class="block.textAlign" v-on:click="selectNode(index)" v-html="block.data" contenteditable></p>
+                        </div>
+                        <div class="unorderedList" v-on:click="selectNode(index)" v-else-if="block.type === 'unordered list'">
+                            <div class="blockTools" v-on:click.stop :key="index">
+                                <div v-on:click="selectNode(null)" title="unselect block">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div v-on:click="deleteBlock" title="delete block">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div v-on:click="upBlock" title="move block up">
+                                    <i class="fas fa-chevron-circle-up"></i>
+                                </div>
+                                <div v-on:click="downBlock" title="move block down">
+                                    <i class="fas fa-chevron-circle-down"></i>
+                                </div>
+                                <div v-on:click="addListItem" title="add item">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div v-on:click="deleteListItem" title="delete item">
+                                    <i class="fas fa-minus-circle"></i>
+                                </div>
+                            </div>
+                            <ul>
+                                <li v-for="item, itemIndex in block.data">
+                                    <p @input="function(e){saveListText(e, itemIndex);}" v-html="item" contenteditable></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="orderedList" v-on:click="selectNode(index)" v-else-if="block.type === 'ordered list'">
+                            <div class="blockTools" v-on:click.stop :key="index">
+                                <div v-on:click="selectNode(null)" title="unselect block">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div v-on:click="deleteBlock" title="delete block">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div v-on:click="upBlock" title="move block up">
+                                    <i class="fas fa-chevron-circle-up"></i>
+                                </div>
+                                <div v-on:click="downBlock" title="move block down">
+                                    <i class="fas fa-chevron-circle-down"></i>
+                                </div>
+                                <div v-on:click="addListItem" title="add item">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div v-on:click="deleteListItem" title="delete item">
+                                    <i class="fas fa-minus-circle"></i>
+                                </div>
+                            </div>
+                            <ol>
+                                <li v-for="item, itemIndex in block.data">
+                                    <p @input="function(e){saveListText(e, itemIndex);}" v-html="item" contenteditable></p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="image" v-else-if="block.type === 'image'" v-on:click="selectNode(index)" :class="block.textAlign" :key="index">
+                            <div class="blockTools" v-on:click.stop>
+                                <div v-on:click="selectNode(null)" title="unselect block">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div v-on:click="deleteBlock" title="delete block">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div v-on:click="addImage" title="add image">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div v-on:click="upBlock" title="move block up">
+                                    <i class="fas fa-chevron-circle-up"></i>
+                                </div>
+                                <div v-on:click="downBlock" title="move block down">
+                                    <i class="fas fa-chevron-circle-down"></i>
+                                </div>
+                            </div>
+                            <div v-for="img, imgIndex in block.data" class="imageWrapper">
+                                <div class="imageTools">
+                                    <div v-on:click="zoomOutImage(imgIndex)" title="zoom out image">
+                                        <i class="fas fa-search-minus"></i>
+                                    </div>
+                                    <div v-on:click="zoomInImage(imgIndex)" title="zoom in image">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                    <div v-on:click="deleteImage(imgIndex)" title="delete image">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </div>
+                                </div>
+                                <img v-bind:src="img.src" v-bind:style="{width: (paperWidth * img.width) + 'px'}">
+                            </div>
+                        </div>
+                        <div class="checklist" v-else-if="block.type === 'checklist'" v-on:click="selectNode(index)">
+                            <div class="blockTools" v-on:click.stop :key="index">
+                                <div v-on:click="selectNode(null)" title="unselect block">
+                                    <i class="fas fa-times-circle"></i>
+                                </div>
+                                <div v-on:click="deleteBlock" title="delete block">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div v-on:click="upBlock" title="move block up">
+                                    <i class="fas fa-chevron-circle-up"></i>
+                                </div>
+                                <div v-on:click="downBlock" title="move block down">
+                                    <i class="fas fa-chevron-circle-down"></i>
+                                </div>
+                                <div v-on:click="addChecklistItem" title="add item">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <div v-on:click="deleteListItem" title="delete last item">
+                                    <i class="fas fa-minus-circle"></i>
+                                </div>
+                            </div>
+                            <div class="checklistWrapper">
+                                <div class="checklistItem" v-for="item, itemIndex in block.data">
+                                    <div class="bullet" :class="item.checked" v-on:click="checkItem(index, itemIndex)"></div>
+                                    <p @input="function(e){saveChecklistText(e, itemIndex);}" v-html="item.text" contenteditable></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
