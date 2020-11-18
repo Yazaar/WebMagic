@@ -7,7 +7,10 @@
 body {
     background: linear-gradient(45deg, #8b0000, #4a8b00, #00388b, #74008b);
     background-size: 1000%;
+    background-repeat: no-repeat;
     animation: bganimation 60s ease-in-out infinite;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 h2 {
@@ -108,8 +111,12 @@ input::placeholder {
          background-position-x: 0%;
          background-position-y: 0%;
      }
-     100% {
+     50% {
          background-position-x: 100%;
          background-position-y: 100%;
+    }
+    100% {
+        background-position-x: 0%;
+        background-position-y: 0%;
      }
 }

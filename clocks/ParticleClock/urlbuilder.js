@@ -33,8 +33,12 @@ for (i of checkboxes){
     i.addEventListener('click', updateURL)
 }
 
-document.getElementById('particlecount-input').addEventListener('input', ()=>{
-    if (document.getElementById('particlecount-checkbox').checked){
+document.getElementById('particlecount-input').addEventListener('input', (e)=>{
+    let ecb = document.getElementById('particlecount-checkbox')
+    if (ecb.checked && /^\d+$/.test(e.currentTarget.value)) {
+        ecb.click()
+    }
+    if (ecb.checked){
         updateURL()
     }
 })
@@ -47,12 +51,10 @@ document.getElementById('url-input').addEventListener('input', ()=>{
 
 document.getElementById('hex-input').addEventListener('input', ()=>{
     let value = document.getElementById('hex-input').value
-    for (let i of value){
-        if(/[a-fA-F0-9]/.test(i) === false){
-            if (document.getElementById('hex-checkbox').checked){
-                document.getElementById('hex-checkbox').click()
-                return
-            }
+    if(/^[a-fA-F0-9]+$/.test(value) === false || value.length !== 4 || value.length !== 6){
+        if (document.getElementById('hex-checkbox').checked){
+            document.getElementById('hex-checkbox').click()
+            return
         }
     }
     if (document.getElementById('hex-checkbox').checked){
