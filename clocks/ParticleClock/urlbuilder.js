@@ -3,16 +3,16 @@ let baseURL = window.location.href.substring(0, window.location.href.indexOf('/u
 function updateURL(){
     let data = {}
     if (document.getElementById('particlecount-checkbox').checked && document.getElementById('particlecount-input').value !== ''){
-        data['particlecount'] = document.getElementById('particlecount-input').value
+        data.particlecount = document.getElementById('particlecount-input').value
     }
     if (document.getElementById('hex-checkbox').checked && document.getElementById('hex-input').value !== ''){
-        data['color'] = document.getElementById('hex-input').value
+        data.color = document.getElementById('hex-input').value
     }
     if (document.getElementById('opacity-checkbox').checked && document.getElementById('opacity-input').value !== ''){
-        data['opacity'] = document.getElementById('opacity-input').value
+        data.opacity = document.getElementById('opacity-input').value
     }
     if (document.getElementById('url-checkbox').checked && document.getElementById('url-input').value !== ''){
-        data['image'] = encodeURIComponent(document.getElementById('url-input').value)
+        data.image = encodeURIComponent(document.getElementById('url-input').value)
     }
     let keys = Object.keys(data)
     let struct = ''
@@ -24,7 +24,9 @@ function updateURL(){
         }
     }
     document.querySelector('#result a').href = baseURL + struct
-    document.querySelector('#result a').innerText = baseURL + struct
+    if (struct.length > 100) {
+        document.querySelector('#result a').innerText = baseURL + struct.substr(0, 100) + '...'
+    }
 }
 
 let checkboxes = document.querySelectorAll('input[type="checkbox"]')
@@ -75,3 +77,28 @@ document.getElementById('opacity-input').addEventListener('input', ()=>{
         updateURL()
     }
 })
+
+document.getElementById('localFile').addEventListener('click', (e)=>{
+    let filePicker = document.createElement('input')
+    filePicker.type = 'file'
+
+    filePicker.addEventListener('input', (e)=>{
+        let fr = new FileReader()
+        fr.readAsDataURL(e.target.files[0])
+        fr.addEventListener('load', (e)=>{
+            let filedata = e.target.result
+            let img = new Image()
+            img.addEventListener('load', ()=>{
+                document.getElementById('url-input').value = filedata
+                if (document.getElementById('url-checkbox').checked){
+                    updateURL()
+                } else {
+                    document.getElementById('url-checkbox').click()
+                }
+            })
+            img.src = filedata;
+        });
+    })
+
+    filePicker.click()
+});
