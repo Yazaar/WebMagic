@@ -10,6 +10,7 @@ body {
     background-repeat: no-repeat;
     animation: bganimation 60s ease-in-out infinite;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 h2 {
@@ -41,8 +42,6 @@ h2 {
     width: 75vw;
     margin: 0 auto;
     padding: 1rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
 }
 
 #build section {
@@ -91,7 +90,7 @@ h2 {
     flex: 1;
 }
 
-#build p {
+#build section p {
     font-size: 1.2rem;
 }
 
@@ -105,23 +104,6 @@ input::-moz-placeholder {
 
 input::placeholder {
     color: rgba(0, 0, 0, .7);
-}
-
-#localFile {
-    margin: .5rem 0 1rem 0;
-    padding: .2rem .5rem;
-    display: inline-block;
-    border: .1rem solid #FFFFFF;
-    cursor: pointer;
-    transition: border-radius 100ms ease-in-out;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
-#localFile:hover {
-    border-radius: .5rem;
 }
 
 @keyframes bganimation {
