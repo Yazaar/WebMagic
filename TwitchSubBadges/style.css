@@ -81,6 +81,23 @@ header h1 {
     background: #aaaaaa;
 }
 
+#newTokenLoaded {
+    display: none;
+    margin-top: .5rem;
+    text-align: center;
+}
+
+#newTokenLoaded span {
+    display: inline-block;
+    padding: .5rem 1rem;
+    background: linear-gradient(45deg, #5a075a 43%, #6e206e 50%, #5a075a 60%);
+    background-size: 1000%;
+    animation: headerH1Animation 7s 2s linear infinite;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
 #results {
     margin-top: 3rem;
 }

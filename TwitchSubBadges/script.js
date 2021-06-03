@@ -178,6 +178,15 @@ if (true) {
             return localStorage.getItem('TTV:Sub Badge Viewer') || null
         }
 
+        let newToken = document.querySelector('#newTokenLoaded')
+
+        if (newToken !== null) {
+            newToken.style.display = 'block'
+            setTimeout(function() {
+                newToken.style.display = 'none'
+            }, 10000)
+        }
+
         localStorage.setItem('TTV:Sub Badge Viewer', at)
 
         return at
