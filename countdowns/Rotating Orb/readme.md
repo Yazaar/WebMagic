@@ -9,7 +9,7 @@ You need one or multiple of the following parameters:
 * ?s=SECONDS_IN_FUTURE
 * ?m=MINUTES_IN_FUTURE
 * ?h=HOURS_IN_FUTURE
-* capitalize the letter to change the behavior into specifically that second/minute/hour
+* capitalize the letter to change the behavior into specifying the ending second/minute/hour of the current day
 
 ### examples
 
