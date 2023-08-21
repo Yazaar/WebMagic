@@ -59,74 +59,104 @@ if (true) {
                 }
             }
         }
-        xml.open('get', 'https://badges.twitch.tv/v1/badges/channels/' + userId + '/display?language=en')
+        xml.open('get', 'https://api.twitch.tv/helix/chat/badges?broadcaster_id=' + userId)
+        xml.setRequestHeader('Client-Id', client_id)
+        xml.setRequestHeader('Authorization', 'Bearer ' + access_token)
         xml.send()
     }
-    
+
     let parseBadgeResponse = function(badgeData, username) {
-        let data = []
-        if (badgeData.badge_sets.subscriber === undefined) {
+        let data = {
+            'Tier 1 sub badges': [],
+            'Tier 2 sub badges': [],
+            'Tier 3 sub badges': []
+        }
+
+        if (badgeData.data === undefined || badgeData.data.length == 0) {
             loading = false
             alert(username + ' does not have any sub badges')
             return
         }
-        let sub_badges = badgeData.badge_sets.subscriber.versions
-        let sub_badge_keys = Object.keys(badgeData.badge_sets.subscriber.versions)
+        let badges = badgeData.data
+        console.log(badges)
 
-        for (let i of sub_badge_keys) {
-            let isNew = true
-            
-            for (let j of data) {
-                if (sub_badges[i].title === j.title) {
-                    isNew = false
-                    break
+        for (let i of badges) {
+            if (i.set_id === 'subscriber') {
+                for (let j of i.versions) {
+                    let set_item = {
+                        title: j.title,
+                        url: j.image_url_4x
+                    }
+
+                    switch (toTier(j.id)) {
+                        case 1:
+                            data['Tier 1 sub badges'].push(set_item)
+                            break
+                        case 2:
+                            data['Tier 2 sub badges'].push(set_item)
+                            break
+                        case 3:
+                            data['Tier 3 sub badges'].push(set_item)
+                            break
+                    }
                 }
             }
 
-            if (isNew) {
-                data.push({
-                    title: sub_badges[i].title,
-                    url: sub_badges[i].image_url_4x
-                })
-            }
         }
         resultData[username] = data
         insertData(data, username)
     }
-    
+
+    let toTier = function(raw_id) {
+        if (raw_id.length === 1) return 1
+        return parseInt(raw_id[0])
+    }
+
     let insertData = function(data, username) {
         let resultElement = document.querySelector('#results')
-    
+
+        let wrapper = document.createElement('div')
+
         let user = document.createElement('h2')
         user.innerText = username
-    
-        let container = document.createElement('div')
-        container.classList.add('subBadgeResult')
-    
-        for (let i of data) {
-    
-            let div = document.createElement('div')
-            div.classList.add('subBadge')
-    
-            let img = document.createElement('img')
-            img.src = i.url
-            div.appendChild(img)
-            
-            let p = document.createElement('p')
-            p.innerText = i.title
-            div.appendChild(p)
-            container.appendChild(div)
+        wrapper.appendChild(user)
+
+        let data_keys = Object.keys(data)
+        for (let i of data_keys) {
+            if (data[i].length == 0) continue
+
+            let badge_type = document.createElement('h3')
+            badge_type.innerText = i
+            wrapper.appendChild(badge_type)
+
+            let container = document.createElement('div')
+            container.classList.add('subBadgeResult')
+
+            for (let j of data[i]) {
+                let div = document.createElement('div')
+                div.classList.add('subBadge')
+
+                let img = document.createElement('img')
+                img.src = j.url
+                div.appendChild(img)
+
+                let p = document.createElement('p')
+                p.innerText = j.title
+                div.appendChild(p)
+                container.appendChild(div)
+            }
+
+            wrapper.appendChild(container)
         }
+
         if (resultElement.children.length === 0) {
-            resultElement.appendChild(user)
-            resultElement.appendChild(container)
+            resultElement.appendChild(wrapper)
         } else {
-            resultElement.insertBefore(container, resultElement.children[0])
-            resultElement.insertBefore(user, resultElement.children[0])
+            resultElement.insertBefore(wrapper, resultElement.children[0])
         }
         loading = false
     }
-    
+
     document.querySelector('#searchButton').addEventListener('click', function(){
         if (processingInput === true){
             return
