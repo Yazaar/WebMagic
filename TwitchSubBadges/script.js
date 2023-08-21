@@ -1,4 +1,4 @@
-if (true) {
+(function(){
     document.querySelector('#usernameInput').focused = false
     document.querySelector('#usernameInput').addEventListener('focus', function(){
         this.focused = true
@@ -7,7 +7,16 @@ if (true) {
     document.querySelector('#usernameInput').addEventListener('blur', function(){
         this.focused = false
     })
-    
+
+    let storeSession = function(current_search) {
+        let store_queue = search_queue
+        if (!store_queue.includes(current_search)) store_queue.push(current_search)
+        localStorage.setItem('TTV:Sub Badge Viewer:Show Users', JSON.stringify({
+            validity: new Date(),
+            users: store_queue
+        }))
+    }
+
     let startSearch = function(username) {
         if (typeof (username) != 'string') {
             loading = false
@@ -17,7 +26,7 @@ if (true) {
             loading = false
             return
         }
-    
+
         let xml = new XMLHttpRequest()
         xml.onreadystatechange = function () {
             if (xml.readyState === 4) {
@@ -32,6 +41,7 @@ if (true) {
                 } else {
                     let xmlData = JSON.parse(xml.response)
                     if (xmlData.error === 'Unauthorized') {
+                        storeSession(username)
                         createToken()
                     } else {
                         alert('error getting userid...')
@@ -46,7 +56,7 @@ if (true) {
         xml.setRequestHeader('Authorization', 'Bearer ' + access_token)
         xml.send()
     }
-    
+
     let getBadges = function(userId, username) {
         let xml = new XMLHttpRequest()
         xml.onreadystatechange = function () {
@@ -78,7 +88,6 @@ if (true) {
             return
         }
         let badges = badgeData.data
-        console.log(badges)
 
         for (let i of badges) {
             if (i.set_id === 'subscriber') {
@@ -165,31 +174,30 @@ if (true) {
         document.querySelector('#usernameInput').value = ''
         processInput(username)
     })
-    
+
     let processInput =  function(data) {
         if (loading === true) {
             return
         }
-        
+
         let username = data.replace(/\s/g, '').replace(/&/g, '').toLowerCase()
-        
+
         if (username.length === 0) {
             return
         }
-    
+
         loading = true
-        
+
         if (Object.keys(resultData).includes(username)){
             insertData(resultData[username], username)
             return
         }
-        
+
         if (searched.includes(username)){
             loading = false
             return
         }
-    
-    
+
         searched = username
         startSearch(username)
     }
@@ -203,7 +211,7 @@ if (true) {
         window.location.hash = ''
 
         let at = p.get('access_token')
-        
+
         if (at === null) {
             return localStorage.getItem('TTV:Sub Badge Viewer') || null
         }
@@ -222,20 +230,33 @@ if (true) {
         return at
     }
 
-    let getUsers = function() {
-        let params = new URLSearchParams(window.location.search)
-        if (params.get("user") === null) {
-            return
+    let getUsersParams = function() {
+        let user_queue = []
+        let ls_users = localStorage.getItem('TTV:Sub Badge Viewer:Show Users')
+        localStorage.removeItem('TTV:Sub Badge Viewer:Show Users')
+        if (ls_users !== null) {
+            ls_users = JSON.parse(ls_users)
+
+            /* 30 minutes validity */
+            if (new Date() - new Date(ls_users.validity) < 1800000) {
+                user_queue = ls_users.users
+            }
         }
 
+        let params = new URLSearchParams(window.location.search)
+        return user_queue.concat(params.getAll("user"))
+    }
+
+    let getUsers = function() {
+        user_queue = JSON.parse(JSON.stringify(search_queue))
+        if (user_queue.length === 0) return
         processingInput = true
-        params = params.getAll("user")
-        processInput(params.shift())
+        processInput(user_queue.shift())
 
         let loop = setInterval(() => {
             if (loading === false){
-                if(params.length > 0){
-                    processInput(params.shift())
+                if(user_queue.length > 0){
+                    processInput(user_queue.shift())
                 } else {
                     loading = false
                     processingInput = false
@@ -244,7 +265,7 @@ if (true) {
             }
         }, 100)
     }
-    
+
     window.addEventListener("keypress", (e) => {
         if (document.querySelector('#usernameInput').focused && e.key == "Enter") {
             document.querySelector('#searchButton').click()
@@ -253,10 +274,11 @@ if (true) {
 
     let client_id = 'y2xo7519lrrijps6yurfnrehdaubry'
     let access_token = getToken()
+    let search_queue = getUsersParams()
     let searched = []
     let resultData = {}
     let loading = false
     let processingInput = false
 
     getUsers()
-}
+})()
